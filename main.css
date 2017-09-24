@@ -1,0 +1,13 @@
+html {
+   margin: 20px;
+}
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+   font-weight: 300;
+} 
+h1 {
+     font-size: 50px;
+   }
+P {
+     font-size: 20px;
+  }
