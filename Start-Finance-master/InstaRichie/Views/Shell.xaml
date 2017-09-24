@@ -98,6 +98,8 @@
                                Text="WishList" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
+            
+            <!-- -->
         </Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>
