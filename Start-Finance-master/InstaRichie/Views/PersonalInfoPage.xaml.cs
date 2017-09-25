@@ -99,11 +99,11 @@ namespace StartFinance.Views
             Results();
         }
 
-        /*private async void DeleteItem_Click(object sender, RoutedEventArgs e)
+        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string AccSelection = ((PersonalInfo)PersonalInfoView.SelectedItem).WishName;
+                string AccSelection = ((PersonalInfo)PersonalInfoView.SelectedItem).Email;
                 if (AccSelection == "")
                 {
                     MessageDialog dialog = new MessageDialog("Not selected the Item", "Oops..!");
@@ -113,7 +113,7 @@ namespace StartFinance.Views
                 {
                     conn.CreateTable<PersonalInfo>();
                     var query1 = conn.Table<PersonalInfo>();
-                    var query3 = conn.Query<PersonalInfo>("DELETE FROM WishList WHERE WishName ='" + AccSelection + "'");
+                    var query3 = conn.Query<PersonalInfo>("DELETE FROM PersonalInfo WHERE Email ='" + AccSelection + "'");
                     PersonalInfoView.ItemsSource = query1.ToList();
                 }
             }
@@ -122,11 +122,21 @@ namespace StartFinance.Views
                 MessageDialog dialog = new MessageDialog("Not selected the Item", "Oops..!");
                 await dialog.ShowAsync();
             }
-        }*/
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Results();
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

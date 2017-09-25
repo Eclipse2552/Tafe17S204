@@ -20,12 +20,13 @@
         <DataTemplate x:Key="PersonalInfoView">
             <Grid>
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding PersonalID}" Padding="0,0,15,0"/>
                     <TextBlock Text="{Binding FirstName}" Padding="0,0,15,0"/>
-                    <TextBlock Text="{Binding LastName}"/>
-                    <TextBlock Text="{Binding DOB}"/>
-                    <TextBlock Text="{Binding Gender}"/>
-                    <TextBlock Text="{Binding Email}"/>
-                    <TextBlock Text="{Binding Phone}"/>
+                    <TextBlock Text="{Binding LastName}" Padding="0,0,15,0"/>
+                    <TextBlock Text="{Binding DOB}" Padding="0,0,15,0"/>
+                    <TextBlock Text="{Binding Gender}" Padding="0,0,15,0"/>
+                    <TextBlock Text="{Binding Email}" Padding="0,0,15,0"/>
+                    <TextBlock Text="{Binding Phone}" Padding="0,0,15,0"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -73,7 +74,7 @@
                              RelativePanel.AlignTopWithPanel="True" Text="Personal Info">
 
             <!--  secondary commands  -->
-            
+
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
@@ -88,7 +89,8 @@
             <!--primary commands-->
             <controls:PageHeader.PrimaryCommands>
                 <AppBarButton Icon="Add" Label="Add Personal Info" Click="AddWish_Click"/>
-                <!--<AppBarButton Icon="Delete" Label="Delete Personal Info"/>-->
+                <AppBarButton Icon="Edit" Label="Edit Personal Info" Click="EditInfo_Click"/>
+                <AppBarButton Icon="Delete" Label="Delete Personal Info" Click="DeleteItem_Click"/>
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
 
@@ -109,6 +111,7 @@
                         <TextBox x:Name="tbPhone" Header="Phone Number" PlaceholderText="Phone" TextWrapping="Wrap"/>
                     </StackPanel>
                     <ListView x:Name="PersonalInfoView"
+                              Grid.Row="1"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               ItemTemplate="{StaticResource PersonalInfoView}" Margin="0,369,0,10">
