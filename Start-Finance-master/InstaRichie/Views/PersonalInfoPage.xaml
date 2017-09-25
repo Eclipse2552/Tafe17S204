@@ -17,11 +17,15 @@
     </Page.DataContext>
 
     <Page.Resources>
-        <DataTemplate x:Key="PersonalInfoDataViews">
+        <DataTemplate x:Key="PersonalInfoView">
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding FirstName}" Padding="0,0,15,0"/>
                     <TextBlock Text="{Binding LastName}"/>
+                    <TextBlock Text="{Binding DOB}"/>
+                    <TextBlock Text="{Binding Gender}"/>
+                    <TextBlock Text="{Binding Email}"/>
+                    <TextBlock Text="{Binding Phone}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -66,14 +70,15 @@
 
         <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Wish List">
+                             RelativePanel.AlignTopWithPanel="True" Text="Personal Info">
 
-            <!--  secondary commands  --><!--
+            <!--  secondary commands  -->
+            
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
-            </controls:PageHeader.SecondaryCommands>-->
+            </controls:PageHeader.SecondaryCommands>
 
         </controls:PageHeader>
 
@@ -82,7 +87,7 @@
                              RelativePanel.AlignBottomWithPanel="True">
             <!--primary commands-->
             <controls:PageHeader.PrimaryCommands>
-                <AppBarButton Icon="Add" Label="Add Personal Info"/>
+                <AppBarButton Icon="Add" Label="Add Personal Info" Click="AddWish_Click"/>
                 <!--<AppBarButton Icon="Delete" Label="Delete Personal Info"/>-->
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
@@ -103,10 +108,10 @@
                         <TextBox x:Name="tbEmail" Header="Email" PlaceholderText="Email" TextWrapping="Wrap"/>
                         <TextBox x:Name="tbPhone" Header="Phone Number" PlaceholderText="Phone" TextWrapping="Wrap"/>
                     </StackPanel>
-                    <ListView x:Name="PersonalInfoView" Grid.Row="1"
+                    <ListView x:Name="PersonalInfoView"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              ItemTemplate="{StaticResource PersonalInfoDataViews}">
+                              ItemTemplate="{StaticResource PersonalInfoView}" Margin="0,369,0,10">
                         <RelativePanel.Below>pageStart</RelativePanel.Below>
                     </ListView>
                 </Grid>
