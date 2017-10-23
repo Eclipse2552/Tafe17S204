@@ -102,7 +102,7 @@
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!-- Appointments Button -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:TransactionPage"
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:AppointmentsPage"
                                           AutomationProperties.Name="Jerry">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48" Height="48" Symbol="Manage"/>

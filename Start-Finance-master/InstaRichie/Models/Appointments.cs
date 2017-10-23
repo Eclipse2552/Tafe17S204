@@ -10,7 +10,7 @@ namespace StartFinance.Models
 {
     class Appointments
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
 
         public string ID { get; set; }
 
