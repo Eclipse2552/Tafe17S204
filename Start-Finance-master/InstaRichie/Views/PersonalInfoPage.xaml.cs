@@ -47,21 +47,24 @@ namespace StartFinance.Views
 
         private async void AddWish_Click(object sender, RoutedEventArgs e)
         {
-            /*try
+            try
             {
-                if (tbFirstName.Text.ToString() == "")
+                if (tbEmail.Text.ToString() == "")
                 {
                     MessageDialog dialog = new MessageDialog("No value entered", "Oops..!");
                     await dialog.ShowAsync();
                 }
                 else
                 {
-                    double TempMoney = Convert.ToDouble(tbFirstName.Text);
                     conn.CreateTable<PersonalInfo>();
                     conn.Insert(new PersonalInfo
                     {
-                        WishName = tbFirstName.Text.ToString(),
-                        Money = TempMoney
+                        FirstName = tbFirstName.Text,
+                        LastName = tbLastName.Text,
+                        DOB = tbDoB.Text,
+                        Gender = tbGender.Text,
+                        Email = tbEmail.Text,
+                        Phone = tbPhone.Text
                     });
                     // Creating table
                     Results();
@@ -69,34 +72,14 @@ namespace StartFinance.Views
             }
             catch (Exception ex)
             {
-                if (ex is FormatException)
+                if (ex is SQLiteException)
                 {
-                    MessageDialog dialog = new MessageDialog("You forgot to enter the Amount or entered an invalid Amount", "Oops..!");
+                    MessageDialog dialog = new MessageDialog("An entry with this email already exist, Try Different a Email", "Oops..!");
                     await dialog.ShowAsync();
                 }
-                else if (ex is SQLiteException)
-                {
-                    MessageDialog dialog = new MessageDialog("Wish Name already exist, Try Different Name", "Oops..!");
-                    await dialog.ShowAsync();
-                }
-                else
-                {
-                    /// no idea
-                }
-            }*/
+            }
 
-            conn.CreateTable<PersonalInfo>();
-            conn.Insert(new PersonalInfo
-            {
-                FirstName = tbFirstName.Text,
-                LastName = tbLastName.Text,
-                DOB = tbDoB.Text,
-                Gender = tbGender.Text,
-                Email = tbEmail.Text,
-                Phone = tbPhone.Text
-            });
-            // Creating table
-            Results();
+
         }
 
         private async void DeleteItem_Click(object sender, RoutedEventArgs e)
@@ -106,7 +89,7 @@ namespace StartFinance.Views
                 string AccSelection = ((PersonalInfo)PersonalInfoView.SelectedItem).Email;
                 if (AccSelection == "")
                 {
-                    MessageDialog dialog = new MessageDialog("Not selected the Item", "Oops..!");
+                    MessageDialog dialog = new MessageDialog("No item selected", "Oops..!");
                     await dialog.ShowAsync();
                 }
                 else
@@ -119,7 +102,7 @@ namespace StartFinance.Views
             }
             catch (NullReferenceException)
             {
-                MessageDialog dialog = new MessageDialog("Not selected the Item", "Oops..!");
+                MessageDialog dialog = new MessageDialog("No item selected", "Oops..!");
                 await dialog.ShowAsync();
             }
         }
@@ -134,9 +117,40 @@ namespace StartFinance.Views
 
         }
 
-        private void EditInfo_Click(object sender, RoutedEventArgs e)
+        private async void EditInfo_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string AccSelection = ((PersonalInfo)PersonalInfoView.SelectedItem).Email;
+                if (AccSelection == "")
+                {
+                    MessageDialog dialog = new MessageDialog("No item selected", "Oops..!");
+                    await dialog.ShowAsync();
+                }
+                else
+                {
+                    conn.CreateTable<PersonalInfo>();
+                    var query1 = conn.Table<PersonalInfo>();
+                    var query3 = conn.Query<PersonalInfo>("UPDATE PersonalInfo SET FirstName='"+tbFirstName.Text
+                        +"',LastName='"+tbLastName.Text
+                        +"',DOB ='"+tbDoB.Text
+                        +"',Gender='"+tbGender.Text
+                        +"',Email='"+tbEmail.Text
+                        +"',Phone='"+tbPhone.Text
+                        +"' WHERE Email='"+AccSelection+"'");
+                    PersonalInfoView.ItemsSource = query1.ToList();
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageDialog dialog = new MessageDialog("No item selected", "Oops..!");
+                await dialog.ShowAsync();
+            }
+        }
 
+        private void PersonalInfoView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+             
         }
     }
 }

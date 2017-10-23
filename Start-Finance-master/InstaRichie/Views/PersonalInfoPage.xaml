@@ -114,7 +114,7 @@
                               Grid.Row="1"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              ItemTemplate="{StaticResource PersonalInfoView}" Margin="0,369,0,10">
+                              ItemTemplate="{StaticResource PersonalInfoView}" Margin="0,369,0,10" ItemClick="PersonalInfoView_ItemClick">
                         <RelativePanel.Below>pageStart</RelativePanel.Below>
                     </ListView>
                 </Grid>
