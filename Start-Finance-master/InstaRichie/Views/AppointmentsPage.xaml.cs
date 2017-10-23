@@ -1,10 +1,12 @@
-﻿using System;
+﻿﻿using SQLite.Net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -12,10 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Popups;
 using StartFinance.Models;
-using SQLite.Net;
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace StartFinance.Views
@@ -34,12 +33,24 @@ namespace StartFinance.Views
             this.InitializeComponent();
 
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-            /// Initializing a database
+
+            // Initial database
+
             conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            // Creating table
-            //DateStamp.Date = DateTime.Now; // gets current date and time
-            //DateStamp1.Date = DateTime.Now;
-            Resuts();
+
+            // Creating Tables
+
+            // Results();
+
+        }
+
+        public void Result()
+        {
+            conn.CreateTable<AppointmentsPage>();
+            var query1 = conn.Table<AppointmentsPage>();
+            
+
+
         }
     }
 }
