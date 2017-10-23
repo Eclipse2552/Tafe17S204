@@ -85,9 +85,9 @@
                              RelativePanel.AlignBottomWithPanel="True">
 
             <controls:PageHeader.PrimaryCommands>
-                <AppBarButton Icon="Add" Label="Add Personal Info" Click="AddWish_Click"/>
-                <AppBarButton Icon="Edit" Label="Edit Personal Info" Click="EditInfo_Click"/>
-                <AppBarButton Icon="Delete" Label="Delete Personal Info" Click="DeleteItem_Click"/>
+                <AppBarButton Icon="Add" Label="Add Personal Info" Click="AppBarButton_Click" />
+                <AppBarButton Icon="Edit" Label="Edit Personal Info" Click="AppBarButton_Click_1" />
+                <AppBarButton Icon="Delete" Label="Delete Personal Info" Click="AppBarButton_Click_2" />
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
 
@@ -101,9 +101,9 @@
                             Orientation="Vertical" VerticalAlignment="Stretch"   HorizontalAlignment="Stretch">
                         <TextBox x:Name="tbAppointmentID" PlaceholderText="Appointment ID" Header="Appointment ID"/>
                         <TextBox x:Name="tbAppointmentName" Header="Appointment Name" PlaceholderText="Appointment Name" TextWrapping="Wrap"/>
-                        <CalendarDatePicker x:Name="appointmentDate" Header="AppointmentDate" />
-                        <TimePicker x:Name="appointmentStartTime" Header="Appointment Time" />
-                        <TimePicker x:Name="appointmentEndTime" Header="Appointment End Time" />
+                        <CalendarDatePicker x:Name="appointmentDate" Header="Appointment Date" />
+                        <TextBox x:Name="appointmentStartTime" Header="Appointment Time" />
+                        <TextBox x:Name="appointmentEndTime" Header="Appointment End Time" />
                     </StackPanel>
 
                     <ListView x:Name="AppointmentDetailView"

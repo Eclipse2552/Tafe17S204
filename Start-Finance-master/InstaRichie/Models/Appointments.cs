@@ -12,19 +12,19 @@ namespace StartFinance.Models
     {
         [PrimaryKey, AutoIncrement]
 
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         [Unique]
 
-        public String appointmentName { get; set; }
+        public string appointmentName { get; set; }
 
         [NotNull]
-        public DateTime appointmentDate { get; set; }
+        public string Date { get; set; }
 
         [NotNull]
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
 
         [NotNull]
-        public DateTime EndTime { get; set; }
+        public string EndTime { get; set; }
     }
 }

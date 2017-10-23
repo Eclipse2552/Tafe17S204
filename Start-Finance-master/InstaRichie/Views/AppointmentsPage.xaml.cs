@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using StartFinance.Models;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace StartFinance.Views
@@ -40,16 +41,86 @@ namespace StartFinance.Views
 
             // Creating Tables
 
-            // Results();
+             Result();
 
         }
 
         public void Result()
         {
-            conn.CreateTable<AppointmentsPage>();
-            var query1 = conn.Table<AppointmentsPage>();
-            
+            conn.CreateTable<Appointments>();
+            var query1 = conn.Table<Appointments>();
+            AppointmentDetailView.ItemsSource = query1.ToList();
 
+
+        }
+
+        private async void AddWish_Click(object sender, RoutedEventArgs e)
+        {
+            conn.CreateTable<Appointments>();
+            conn.Insert(new Appointments
+            {
+                ID = tbAppointmentID.Text,
+                appointmentName = tbAppointmentName.Text,
+                EndTime = appointmentEndTime.Text,
+                StartTime = appointmentStartTime.Text,
+                Date = appointmentDate.Text
+
+
+
+
+            });
+
+            Result();
+
+
+        }
+
+
+        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string AceSelection = ((Appointments)AppointmentDetailView.SelectedItem).appointmentName;
+                if (AceSelection == "")
+                {
+                    MessageDialog dialog = new MessageDialog("not selected the item", "ooops..!");
+                    await dialog.ShowAsync();
+                }
+                else
+                {
+                    conn.CreateTable<Appointments>();
+                    var query1 = conn.Table<Appointments>();
+                    var query3 = conn.Query<Appointments>("DELETE FROM PersonalInfo Where Appointment name ='" + AceSelection + "'");
+                    AppointmentDetailView.ItemsSource = query1.ToList();
+                }
+            }
+
+            catch (NullReferenceException)
+            {
+                MessageDialog dialogue = new MessageDialog("Not Selected the Item", "Opps...");
+                await dialogue.ShowAsync();
+            }
+        }
+
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Result();
+        }
+
+
+private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
 
         }
     }
