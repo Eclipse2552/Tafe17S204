@@ -128,7 +128,8 @@ private async void AppBarButton_Click(object sender, RoutedEventArgs e)
                     await dialog.ShowAsync();
                 }
 
-                else {
+                else
+                {
                     conn.Insert(new Appointments()
                     {
                         ID = tbAppointmentID.Text,
@@ -139,14 +140,16 @@ private async void AppBarButton_Click(object sender, RoutedEventArgs e)
                     });
 
                     Result();
-                    
-                }
 
-                catch(Exception ex)
+                }
+            }
+
+            catch (Exception ex)
             {
                 if (ex is FormatException)
                 {
-
+                    MessageDialog dialog = new MessageDialog("You fogot to include some date ");
+                    await dialog.ShowAsync();
                 }
             }
             }
