@@ -56,6 +56,13 @@ namespace StartFinance.Views
 
         private async void AddWish_Click(object sender, RoutedEventArgs e)
         {
+
+
+            try
+            {
+                if (tbAppointmentName.Text)
+            }
+
             conn.CreateTable<Appointments>();
             conn.Insert(new Appointments
             {
@@ -109,9 +116,40 @@ namespace StartFinance.Views
         }
 
 
-private void AppBarButton_Click(object sender, RoutedEventArgs e)
+private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            string Date = appointmentDate.ToString();
 
+            try
+            {
+                if (appointmentDate.ToString() == "" || tbAppointmentName.ToString() == "" || appointmentStartTime.ToString() == "" || appointmentEndTime.ToString() == "")
+                {
+                    MessageDialog dialog = new MessageDialog("Value(s) not entered, Opps");
+                    await dialog.ShowAsync();
+                }
+
+                else {
+                    conn.Insert(new Appointments()
+                    {
+                        ID = tbAppointmentID.Text,
+                        appointmentName = tbAppointmentName.Text,
+                        EndTime = appointmentEndTime.Text,
+                        StartTime = appointmentStartTime.Text,
+                        Date = appointmentDate.Text
+                    });
+
+                    Result();
+                    
+                }
+
+                catch(Exception ex)
+            {
+                if (ex is FormatException)
+                {
+
+                }
+            }
+            }
         }
 
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
