@@ -85,9 +85,9 @@
                              RelativePanel.AlignBottomWithPanel="True">
 
             <controls:PageHeader.PrimaryCommands>
-                <AppBarButton Icon="Add" Label="Add Personal Info" Click="AppBarButton_Click" />
-                <AppBarButton Icon="Edit" Label="Edit Personal Info" Click="AppBarButton_Click_1" />
-                <AppBarButton Icon="Delete" Label="Delete Personal Info" Click="AppBarButton_Click_2" />
+                <AppBarButton Icon="Add" Label="Add Appointment" Click="AddAppointment_Click" />
+                <AppBarButton Icon="Edit" Label="Edit Appointment" Click="EditAppointment_Click"/>
+                <AppBarButton Icon="Delete" Label="Delete Appointment" Click="DeleteAppointment_Click"/>
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
 

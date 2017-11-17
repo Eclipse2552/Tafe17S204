@@ -54,36 +54,8 @@ namespace StartFinance.Views
 
         }
 
-        private async void AddWish_Click(object sender, RoutedEventArgs e)
-        {
 
-
-            try
-            {
-                if (tbAppointmentName.Text)
-            }
-
-            conn.CreateTable<Appointments>();
-            conn.Insert(new Appointments
-            {
-                ID = tbAppointmentID.Text,
-                appointmentName = tbAppointmentName.Text,
-                EndTime = appointmentEndTime.Text,
-                StartTime = appointmentStartTime.Text,
-                Date = appointmentDate.Text
-
-
-
-
-            });
-
-            Result();
-
-
-        }
-
-
-        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
+        private async void DeleteAppointment_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -116,7 +88,44 @@ namespace StartFinance.Views
         }
 
 
-private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void EditAppointment_Click(object sender,RoutedEventArgs e)
+        {
+
+            try
+            {
+                string AccSelection = ((Appointments)AppointmentDetailView.SelectedItem).appointmentName;
+                if (appointmentDate.ToString() == "" || tbAppointmentName.ToString() == "" || appointmentStartTime.ToString() == "" || appointmentEndTime.ToString() == "")
+                {
+                    MessageDialog dialog = new MessageDialog("Value(s) not entered, Opps");
+                    await dialog.ShowAsync();
+                }
+
+                else
+                {
+                    conn.CreateTable<Appointments>();
+                    var query1 = conn.Table<Appointments>();
+                    var query2 = conn.Query<Appointments>("UPDATE Appointments SET "
+                        + "ID='" + tbAppointmentID.Text
+                       // + "',appointmentName='" + tbAppointmentName.Text
+                        + "',EndTime='" + appointmentEndTime.Text
+                        + "',StartTime='" + appointmentStartTime.Text
+                        + "',Date='" + appointmentDate.Text
+                        +"' WHERE Name='"+AccSelection+"'");
+                    AppointmentDetailView.ItemsSource = query1.ToList();
+
+                    Result();
+
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageDialog dialog = new MessageDialog("No item selected", "Oops...!");
+                await dialog.ShowAsync();
+            }
+        }
+
+
+        private async void AddAppointment_Click(object sender, RoutedEventArgs e)
         {
             string Date = appointmentDate.ToString();
 
@@ -152,15 +161,8 @@ private async void AppBarButton_Click(object sender, RoutedEventArgs e)
                     await dialog.ShowAsync();
                 }
             }
-            }
         }
-
-        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
